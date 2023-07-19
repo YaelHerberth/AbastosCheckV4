@@ -13,7 +13,7 @@
     <script src="../build/js/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 
-<body data-bs-theme="">
+<body data-bs-theme="light">
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="col-md-3 mb-2 mb-md-0">
@@ -50,7 +50,7 @@
             <div class="col-md-3 text-end">
                 <button type="button" class="btn btn-outline-success me-2"><i class="bi bi-person-circle"></i></i> Iniciar Sesion</button>
                 <button type="button" class="btn btn-success">Registrarse</button>
-                <button type="button" class="btn btn-outline-dark"><i class="bi bi-moon"></i></button>
+                <button type="button" class="btn btn-dark dark-mode"><i id="darkmode" class="bi bi-moon-fill"></i></button>
             </div>
         </header>
     </div>
