@@ -26,7 +26,8 @@ class ActiveRecord
             $this->actualizar();
         } else {
             // Creando un nuevo registro
-            $this->crear();
+            return $this->crear();
+            
         }
     }
 
@@ -47,11 +48,14 @@ class ActiveRecord
 
         $resultado = self::$db->query($query);
 
-        // Mensaje de exito o error
-        if ($resultado) {
-            //Redireccionar al usuario
-            header('Location: /admin?resultado=1');
-        }
+        return $resultado;
+
+
+        // // Mensaje de exito o error
+        // if ($resultado) {
+        //     //Redireccionar al usuario
+        //     header('Location: /login?resultado=1');
+        // }
     }
 
     public function actualizar()
@@ -86,7 +90,7 @@ class ActiveRecord
         $resultado = self::$db->query($query);
 
         if ($resultado) {
-            if($_POST['tipo'] === 'propiedad'){
+            if ($_POST['tipo'] === 'propiedad') {
                 $this->eliminarImagen();
             }
             header('Location: /admin?resultado=3');

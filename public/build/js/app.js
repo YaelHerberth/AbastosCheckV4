@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
 const DarkMode = () => {
     document.querySelector("body").setAttribute("data-bs-theme", "dark");
     document.querySelector("#darkmode").setAttribute("class", "bi-sun-fill");
+    document.querySelector("#button-darkmode").setAttribute("class", "btn btn-light dark-mode");
 }
 
 const LightMode = () => {
     document.querySelector("body").setAttribute("data-bs-theme", "light");
     document.querySelector("#darkmode").setAttribute("class", "bi bi-moon-fill");
+    document.querySelector("#button-darkmode").setAttribute("class", "btn btn-dark dark-mode");
 }
 
 const CurrentTheme = () => {
