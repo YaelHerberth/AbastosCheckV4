@@ -5,6 +5,9 @@ if (!isset($_SESSION)) {
 
 $auth = $_SESSION['login'] ?? false;
 
+use Model\DepartamentosModel;
+$departamento = new DepartamentosModel();
+$resultado =  $departamento->all();
 
 ?>
 
@@ -39,9 +42,9 @@ $auth = $_SESSION['login'] ?? false;
                         Departamentos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Bebidas</a></li>
-                        <li><a class="dropdown-item" href="#">Niños</a></li>
-                        <li><a class="dropdown-item" href="#">Comida</a></li>
+                        <?php foreach($resultado as $departamento): ?>
+                        <li><a class="dropdown-item" href="/productos?id=<?= $departamento->id ?>"><?= $departamento->nombre_departamento ?></a></li>
+                        <?php endforeach ?>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -67,7 +70,7 @@ $auth = $_SESSION['login'] ?? false;
                 </a>
                 <?php if (!$auth) : ?>
                     <a href="/login" class="btn btn-outline-success"><i class="bi bi-person-circle"></i></i> Iniciar Sesion</a>
-                    <a href="/signup" class="btn btn-success">Registrarse</a>
+                    <a href="/signup" class="btn btn-success ">Registrarse</a>
                 <?php else :  ?>
 
                     <a role="button" class="link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
