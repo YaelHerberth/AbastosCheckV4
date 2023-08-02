@@ -14,6 +14,7 @@ $router = new Router;
 
 session_start();
 
+// var_dump( password_hash('123456', PASSWORD_DEFAULT));
 
 // Zona publica
 $router->get('/',[PaginasController::class, 'index']);
@@ -29,8 +30,15 @@ $router->get('/users/crear',[UsuariosController::class, 'crear']);
 $router->post('/users/crear',[UsuariosController::class, 'crear']);
 $router->get('/users/actualizar',[UsuariosController::class, 'actualizar']);
 $router->post('/users/actualizar',[UsuariosController::class, 'actualizar']);
+$router->post('/users/eliminar',[UsuariosController::class, 'eliminar']);
+
 // Departamentos
 $router->get('/departamentos',[DepartamentosController::class, 'index']);
+$router->get('/departamentos/crear',[DepartamentosController::class, 'crear']);
+$router->post('/departamentos/crear',[DepartamentosController::class, 'crear']);
+$router->get('/departamentos/actualizar',[DepartamentosController::class, 'actualizar']);
+$router->post('/departamentos/actualizar',[DepartamentosController::class, 'actualizar']);
+$router->post('/departamentos/eliminar',[DepartamentosController::class, 'eliminar']);
 // Productos
 $router->get('/productos',[ProductosController::class, 'index']);
 $router->get('/productos/crear',[ProductosController::class, 'crear']);

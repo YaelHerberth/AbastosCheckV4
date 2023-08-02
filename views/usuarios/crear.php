@@ -33,17 +33,6 @@
             </div>
 
             <div class="col-md-12">
-                <div class="form-floating mb-3">
-                    <select class="form-select" id="estatus" name="usuario[estatus]">
-                        <option value="1">Activo</option>
-                        <option value="0">Baja</option>
-                    </select>
-                    <label for="estatus">Estatus</label>
-
-                </div>
-            </div>
-
-            <div class="col-md-12">
                 <div class="container row">
                     <div class="col-md-6">
                         <label for="imagen" class="mb-1"><i class="bi bi-image"></i> Imagen (Solo jpg y png)</label>

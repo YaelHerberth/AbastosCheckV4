@@ -5,7 +5,7 @@ namespace Model;
 class UsuariosModel extends ActiveRecord
 {
     protected static $tabla = 'usuarios';
-    protected static $columnasDB = ['id', 'username_usuario', 'email_usuario', 'password_usuario', 'imagen_usuario', 'token', 'autenticado', 'estatus'];
+    protected static $columnasDB = ['id', 'username_usuario', 'email_usuario', 'password_usuario', 'imagen_usuario', 'token', 'autenticado'];
 
     public $id;
     public $username_usuario;
@@ -14,7 +14,6 @@ class UsuariosModel extends ActiveRecord
     public $imagen_usuario;
     public $token;
     public $autenticado;
-    public $estatus;
 
     public function __construct($args = [])
     {
@@ -25,14 +24,8 @@ class UsuariosModel extends ActiveRecord
         $this->imagen_usuario = $args['imagen_usuario'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->autenticado = $args['autenticado'] ?? '';
-        $this->estatus = $args['estatus'] ?? '';
     }
 
-    public function findUsuario($id)
-    {
-        $resultado = $this->find($id);
-        return $resultado;
-    }
 
     public function validar()
     {
@@ -63,9 +56,13 @@ class UsuariosModel extends ActiveRecord
     {
         // Elimina la imagen previa
         if (!is_null($this->id)) {
+            // Comprobar que $this->imagen_usuario no este vacio
+            if (!$this->imagen_usuario) {
+                $this->imagen_usuario = $imagen;
+            }
+
             $this->eliminarImagenUsuario();
         }
-
         // Asignar al atributo de imagen el nombre de la imagen
         if ($imagen) {
             $this->imagen_usuario = $imagen;
@@ -77,25 +74,39 @@ class UsuariosModel extends ActiveRecord
     {
         // Comprobar que existe el archivo
         $existeArchivo = file_exists(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
+
         if ($existeArchivo) {
             unlink(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
         }
     }
 
     // Comprobar que la contraseña coincida con la almancenada en la base de datos
-    public function comprobarPasswordNueva(){
-        if($_POST['usuario']['password_usuario_a'] && $_POST['usuario']['password_usuario_n']){
+    public function comprobarPasswordNueva()
+    {
+        if ($_POST['usuario']['password_usuario_a'] && $_POST['usuario']['password_usuario_n']) {
             $pass = $_POST['usuario']['password_usuario_a'];
             $passNuevo = $_POST['usuario']['password_usuario_n'];
             $passHash = $this->password_usuario;
             $verify = password_verify($pass, $passHash);
 
-            if($verify){
+            if ($verify) {
                 $passHashNuevo = password_hash($passNuevo, PASSWORD_DEFAULT);
                 $this->password_usuario = $passHashNuevo;
             } else {
                 self::$errores[] = 'La nueva contraseña no coincide con la anterior, intentelo de nuevo';
             }
+        }
+    }
+
+    public function eliminarUsuario()
+    {
+
+        $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            $this->eliminarImagenUsuario();
+            header('Location: /users?resultado=4');
         }
     }
 }

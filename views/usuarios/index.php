@@ -47,7 +47,6 @@
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Imagen</th>
-                <th>Estatus</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -62,15 +61,19 @@
                     <?php else : ?>
                         <td><img class="img-fluid img-thumbnail" style="width: 75px;" src="build/img/Usuarios/<?= $usuarios->imagen_usuario ?>" alt="<?= $usuarios->username_usuario ?>"></td>
                     <?php endif ?>
-                    <td><?php if ($usuarios->estatus == 1) {
-                            echo 'Activo';
-                        } else {
-                            echo 'Baja';
-                        } ?></td>
                     <td>
-                        <a href="/users/actualizar?id=<?= $usuarios->id ?>" class="btn btn-info"><i class="bi bi-pen"></i></a>
-                        <button class="btn btn-warning"><i class="bi bi-trash"></i></button>
-                        <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                        <div class="row">
+                            <div class="col-2">
+                                <a href="/users/actualizar?id=<?= $usuarios->id ?>" class="btn btn-warning"><i class="bi bi-pen"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <form action="/users/eliminar" method="POST">
+                                    <input type="hidden" name="id" value="<?= $usuarios->id ?>">
+                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </div>
+
+                        </div>
                     </td>
                 </tr>
             <?php endforeach ?>

@@ -113,7 +113,6 @@ class ActiveRecord
 
         foreach ($atributos as $key => $value) {
             $sanitizando[$key] = self::$db->escape_string($value);
-            var_dump($sanitizando[$key]);
         }
         return $sanitizando;
     }

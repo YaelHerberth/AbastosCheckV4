@@ -72,9 +72,8 @@ function validarORedireccionar(string $url)
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
-    if (!$id && $id != 0) {
-        // header("Location: {$url}");
-        echo 'no es entero';
+    if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+        header("Location: {$url}");
     }
 
     return $id;

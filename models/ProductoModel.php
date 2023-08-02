@@ -5,7 +5,7 @@ class ProductoModel extends ActiveRecord
 {
     protected static $tabla = 'productos';
     protected static $tabla2 = 'departamentos';
-    protected static $columnasDB = ['id', 'nombre_producto', 'precio_producto', 'descripcion_producto', 'imagen_producto', 'stock', 'id_departamento', 'estatus'];
+    protected static $columnasDB = ['id', 'nombre_producto', 'precio_producto', 'descripcion_producto', 'imagen_producto', 'stock', 'id_departamento'];
 
     public $id;
     public $nombre_producto;
@@ -14,7 +14,6 @@ class ProductoModel extends ActiveRecord
     public $imagen_producto;
     public $stock;
     public $id_departamento;
-    public $estatus;
     public $nombre_departamento;
 
     public function __construct($args = [])
@@ -26,7 +25,6 @@ class ProductoModel extends ActiveRecord
         $this->imagen_producto = $args['imagen_producto'] ?? '';
         $this->stock = $args['stock'] ?? '';
         $this->id_departamento = $args['id_departamento'] ?? '';
-        $this->estatus = $args['estatus'] ?? '';
         $this->nombre_departamento = $args['nombre_departamento'] ?? '';
     }
 

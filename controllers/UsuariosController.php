@@ -27,28 +27,30 @@ class UsuariosController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = new UsuariosModel($_POST['usuario']);
 
-            /* Subida de archivos */
-            //Generar un nombre unico
-            $nombreImagen = md5(uniqid(rand(), true)) . '.jpg';
-
-            //  Setear la imagen
-            //  Realiza un resize a la imagen con intervention
-
-            if ($_FILES['usuario']['tmp_name']['imagen_usuario']) {
-                $img = Image::make($_FILES['usuario']['tmp_name']['imagen_usuario'])->fit(500, 500);
-                $usuario->setImagen($nombreImagen);
-            }
-
+            
             $errores = $usuario->validar();
-
+            
             if (empty($errores)) {
+                
+                /* Subida de archivos */
+                //Generar un nombre unico
+                $nombreImagen = md5(uniqid(rand(), true)) . '.jpg';
+    
+                
+                if ($_FILES['usuario']['tmp_name']['imagen_usuario']) {
+                    // Crear la carpeta para subir imagenes
+                    if (!is_dir(CARPETA_IMAGENES_USUARIOS)) {
+                        mkdir(CARPETA_IMAGENES_USUARIOS);
+                    }
+                    
+                    //  Realiza un resize a la imagen con intervention
+                    $img = Image::make($_FILES['usuario']['tmp_name']['imagen_usuario'])->fit(500, 500);
+                    //  Setear la imagen
+                    $usuario->setImagen($nombreImagen);
 
-                // Crear la carpeta para subir imagenes
-                if (!is_dir(CARPETA_IMAGENES_USUARIOS)) {
-                    mkdir(CARPETA_IMAGENES_USUARIOS);
+                    //  Guardar la imagen en el servidor
+                    $img->save(CARPETA_IMAGENES_USUARIOS . $nombreImagen);
                 }
-                //  Guardar la imagen en el servidor
-                $img->save(CARPETA_IMAGENES_USUARIOS . $nombreImagen);
 
                 // Guardar en la base de datos
                 $usuario->encriptarPassword();
@@ -67,10 +69,11 @@ class UsuariosController
 
     public static function actualizar(Router $router)
     {
-        validarORedireccionar('/users');
+        $id = validarORedireccionar('/users?resultado=5');
 
         $errores = UsuariosModel::getErrores();
-        $usuario = UsuariosModel::find($_GET['id']);
+        $usuario = UsuariosModel::find($id);
+
 
         if (!$usuario) {
             header('Location: /users?resultado=5');
@@ -94,6 +97,10 @@ class UsuariosController
             if (empty($errores)) {
 
                 if ($_FILES['usuario']['tmp_name']['imagen_usuario']) {
+                    // Crear la carpeta para subir imagenes
+                    if (!is_dir(CARPETA_IMAGENES_USUARIOS)) {
+                        mkdir(CARPETA_IMAGENES_USUARIOS);
+                    }
                     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
                     $image = Image::make($_FILES['usuario']['tmp_name']['imagen_usuario'])->fit(500, 500);
                     $usuario->setImagen($nombreImagen, CARPETA_IMAGENES_USUARIOS);
@@ -114,4 +121,17 @@ class UsuariosController
             "usuario" => $usuario
         ]);
     }
+
+    public static function eliminar(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                $usuario = UsuariosModel::find($id);
+                $usuario->eliminarUsuario();
+            }
+        }
+    }
+
 }

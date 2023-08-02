@@ -13,9 +13,8 @@ class ProfileController
         if($id_usuario == null){
             header('Location: /login?resultado=2');
         }
-
-        $usuario = new UsuariosModel();
-        $resultado = $usuario->findUsuario($id_usuario);
+        
+        $resultado = UsuariosModel::find($id_usuario);
         
         $router->render('profile/index', [
             'resultado' => $resultado

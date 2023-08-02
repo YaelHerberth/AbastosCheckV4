@@ -35,12 +35,12 @@
                                         </span>
                                         <div class="ms-4 h6 fw-normal mb-0">
                                             <p class="mb-0 h5">Perfiles</p>
-                                            <div class="d-flex">
+                                            <!-- <div class="d-flex">
                                                 <h5 class="purecounter me-1 mb-0 fw-bold">
                                                     100
                                                 </h5>
                                                 <span class="mt-1 mb-0">Registros</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </a>
@@ -54,12 +54,12 @@
                                         </span>
                                         <div class="ms-4 h6 fw-normal mb-0">
                                             <p class="mb-0 h5">Departamentos</p>
-                                            <div class="d-flex">
+                                            <!-- <div class="d-flex">
                                                 <h5 class="purecounter me-1 mb-0 fw-bold">
                                                     100
                                                 </h5>
                                                 <span class="mt-1 mb-0">Registros</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </a>
@@ -72,12 +72,12 @@
                                         </span>
                                         <div class="ms-4 h6 fw-normal mb-0">
                                             <p class="mb-0 h5">Productos</p>
-                                            <div class="d-flex">
+                                            <!-- <div class="d-flex">
                                                 <h5 class="purecounter me-1 mb-0 fw-bold">
                                                     100
                                                 </h5>
                                                 <span class="mt-1 mb-0">Registros</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </a>

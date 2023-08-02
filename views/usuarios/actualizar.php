@@ -36,15 +36,6 @@
                         <input type="email" class="form-control" id="email" name="usuario[email_usuario]" value="<?= s($usuario->email_usuario) ?>" placeholder="Correo Electronico">
                         <label for="email">Correo Electronico</label>
                     </div>
-
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="estatus" name="usuario[estatus]">
-                            <option value="1" <?= $usuario->estatus === '1' ? 'selected' : '' ?>>Activo</option>
-                            <option value="0" <?= $usuario->estatus === '0' ? 'selected' : '' ?>>Baja</option>
-                        </select>
-                        <label for="estatus">Estatus</label>
-
-                    </div>
                 </div>
             </div>
         </div>

@@ -15,7 +15,6 @@ class AuthModel extends ActiveRecord
     public $imagen_usuario;
     public $token;
     public $autenticado;
-    public $estatus;
 
     public function __construct($args = [])
     {
@@ -26,7 +25,6 @@ class AuthModel extends ActiveRecord
         $this->imagen_usuario = $args['imagen_usuario'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->autenticado = $args['autenticado'] ?? '';
-        $this->estatus = $args['estatus'] ?? '';
     }
 
     public function validarLogin()
@@ -76,21 +74,6 @@ class AuthModel extends ActiveRecord
         return $resultado;
     }
 
-    public function estatusUsuario()
-    {
-        // FALTA INTEGRARLO
-        // Revisar si el usuario esta dado de baja
-        $query = "SELECT estatus FROM " . self::$tabla . " WHERE email_usuario = '" . $this->email_usuario . "' LIMIT 1";
-
-        $resultado = self::$db->query($query);
-
-        if (!$resultado->num_rows) {
-            self::$errores[] = "El usuario no existe";
-            return;
-        }
-        
-        return $resultado;
-    }
 
     public function comprobarPassword($resultado)
     {
@@ -126,7 +109,6 @@ class AuthModel extends ActiveRecord
         $password = $this->password_usuario;
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $this->password_usuario = $passwordHash;
-        $this->estatus = 1;
 
         $resultado = $this->guardar();
         if ($resultado) {
