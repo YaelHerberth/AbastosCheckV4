@@ -72,11 +72,16 @@ class UsuariosModel extends ActiveRecord
     //Eliminar imagen
     public function eliminarImagenUsuario()
     {
-        // Comprobar que existe el archivo
-        $existeArchivo = file_exists(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
+        if(!$this->imagen_usuario == ''){
+            // Comprobar que existe el archivo
+            $existeArchivo = file_exists(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
+    
+            if ($existeArchivo) {
+                unlink(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
+            }
 
-        if ($existeArchivo) {
-            unlink(CARPETA_IMAGENES_USUARIOS . $this->imagen_usuario);
+        }else {
+            return;
         }
     }
 

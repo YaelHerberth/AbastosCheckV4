@@ -10,7 +10,6 @@ class UsuariosController
 {
     public static function index(Router $router)
     {
-        $usuarios = new UsuariosModel();
         $resultado = UsuariosModel::all();
 
         $router->render('usuarios/index', [
@@ -23,6 +22,7 @@ class UsuariosController
 
         $usuario = new UsuariosModel();
         $errores = UsuariosModel::getErrores();
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = new UsuariosModel($_POST['usuario']);
