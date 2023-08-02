@@ -76,6 +76,22 @@ class AuthModel extends ActiveRecord
         return $resultado;
     }
 
+    public function estatusUsuario()
+    {
+        // FALTA INTEGRARLO
+        // Revisar si el usuario esta dado de baja
+        $query = "SELECT estatus FROM " . self::$tabla . " WHERE email_usuario = '" . $this->email_usuario . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if (!$resultado->num_rows) {
+            self::$errores[] = "El usuario no existe";
+            return;
+        }
+        
+        return $resultado;
+    }
+
     public function comprobarPassword($resultado)
     {
         $usuario = $resultado->fetch_object();
@@ -86,6 +102,8 @@ class AuthModel extends ActiveRecord
         }
 
         $this->username_usuario = $usuario->username_usuario;
+        $this->imagen_usuario = $usuario->imagen_usuario;
+        $this->id = $usuario->id;
 
         return $autenticado;
     }
@@ -94,9 +112,11 @@ class AuthModel extends ActiveRecord
     {
 
         session_start();
-        // Llenar el arreglo de sesion      
+        // Llenar el arreglo de sesion   
+        $_SESSION['id'] = $this->id;   
         $_SESSION['username'] = $this->username_usuario;
         $_SESSION['email'] = $this->email_usuario;
+        $_SESSION['imagen'] = $this->imagen_usuario;
         $_SESSION['login'] = true;
 
         header('Location: /');

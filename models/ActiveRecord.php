@@ -176,6 +176,16 @@ class ActiveRecord
         return array_shift($resultado);
     }
 
+    public static function findAll($id)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE id = {$id}";
+        $resultado = self::consultarSQL($query);
+
+        // Array_shift manda el primer elemento de un arreglo
+
+        return $resultado;
+    }
+
     // Obtiene determinado numero de registros
     public static function get($cantidad)
     {

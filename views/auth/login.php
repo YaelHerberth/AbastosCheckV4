@@ -15,6 +15,15 @@
                                 <h2 class="fw-bold py-5">Bienvenido</h2>
                             </div>
 
+                            <?php
+                            $resultado = $_GET['resultado'] ?? null;
+                            if ($resultado == 2) :
+                            ?>
+                                <div class="alert alert-warning text-uppercase text-center" role="alert">
+                                    ¡No haz iniciado sesion! Inicia sesion para ingresar a propiedades de tu perfil
+                                </div>
+                            <?php endif ?>
+
                             <?php foreach ($errores as $error) : ?>
                                 <div class="alert alert-danger text-uppercase text-center" role="alert">
                                     <?= $error ?>

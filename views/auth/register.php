@@ -17,7 +17,7 @@
 
                             <?php
                             $resultado = $_GET['resultado'] ?? null;
-                            if ($resultado) :
+                            if ($resultado == 1) :
                             ?>
                                 <div class="alert alert-success text-uppercase text-center" role="alert">
                                     ¡La cuenta a sido creado correctamente! Ahora puede iniciar sesión</a>

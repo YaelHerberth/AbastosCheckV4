@@ -21,7 +21,7 @@ class AuthController
             if (empty($errores)) {
 
                 $resultado = $auth->existeUsuario();
-
+                
                 if (!$resultado) {
                     // Verificar si el usuario existe o no (mensaje de error)
                     $errores = AuthModel::getErrores();

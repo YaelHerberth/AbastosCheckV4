@@ -6,8 +6,12 @@ if (!isset($_SESSION)) {
 $auth = $_SESSION['login'] ?? false;
 
 use Model\DepartamentosModel;
+
 $departamento = new DepartamentosModel();
 $resultado =  $departamento->all();
+
+// var_dump($_SESSION);
+// var_dump($_SERVER['DOCUMENT_ROOT'])
 
 ?>
 
@@ -23,6 +27,9 @@ $resultado =  $departamento->all();
     <link rel="stylesheet" href="../build/css/app.css">
     <script src="../build/js/app.js"></script>
     <script src="../build/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
 </head>
 
 <body data-bs-theme="light">
@@ -30,7 +37,7 @@ $resultado =  $departamento->all();
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="col-md-3 mb-2 mb-md-0">
                 <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                    <img src="build/img/LogoH2.svg" alt="" class="img-fluid ms-2 me-4" style="width: 3rem; ">
+                    <img src="/build/img/LogoH2.svg" alt="" class="img-fluid ms-2 me-4" style="width: 3rem; ">
                     <h3 class="mt-2">AbastosCheck</h3>
                 </a>
             </div>
@@ -42,8 +49,8 @@ $resultado =  $departamento->all();
                         Departamentos
                     </a>
                     <ul class="dropdown-menu">
-                        <?php foreach($resultado as $departamento): ?>
-                        <li><a class="dropdown-item" href="/productos?id=<?= $departamento->id ?>"><?= $departamento->nombre_departamento ?></a></li>
+                        <?php foreach ($resultado as $departamento) : ?>
+                            <li><a class="dropdown-item" href="/productos?id=<?= $departamento->id ?>"><?= $departamento->nombre_departamento ?></a></li>
                         <?php endforeach ?>
                     </ul>
                 </li>
@@ -74,14 +81,20 @@ $resultado =  $departamento->all();
                 <?php else :  ?>
 
                     <a role="button" class="link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <?php if (!$_SESSION['imagen']) : ?>
+                            <img src="/build/img/profile-default.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <?php else : ?>
+                            <img src="/build/img/Usuarios/<?= $_SESSION['imagen'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <?php endif ?>
                     </a>
                     <ul class="dropdown-menu text-small">
-                        <li><p class="dropdown-item text-success text-uppercase"><?= $_SESSION['username'] ?></p></li>
+                        <li>
+                            <p class="dropdown-item text-success text-uppercase"><?= $_SESSION['username'] ?></p>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle"></i> Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
