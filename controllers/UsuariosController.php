@@ -33,7 +33,7 @@ class UsuariosController
 
             //  Setear la imagen
             //  Realiza un resize a la imagen con intervention
-            
+
             if ($_FILES['usuario']['tmp_name']['imagen_usuario']) {
                 $img = Image::make($_FILES['usuario']['tmp_name']['imagen_usuario'])->fit(500, 500);
                 $usuario->setImagen($nombreImagen);
@@ -49,11 +49,11 @@ class UsuariosController
                 }
                 //  Guardar la imagen en el servidor
                 $img->save(CARPETA_IMAGENES_USUARIOS . $nombreImagen);
-                
+
                 // Guardar en la base de datos
                 $usuario->encriptarPassword();
                 $resultado = $usuario->guardar();
-                
+
                 if ($resultado) {
                     header('Location: /users?resultado=1');
                 }
@@ -62,6 +62,56 @@ class UsuariosController
         $router->render('usuarios/crear', [
             "usuario" => $usuario,
             "errores" => $errores
+        ]);
+    }
+
+    public static function actualizar(Router $router)
+    {
+        validarORedireccionar('/users');
+
+        $errores = UsuariosModel::getErrores();
+        $usuario = UsuariosModel::find($_GET['id']);
+
+        if (!$usuario) {
+            header('Location: /users?resultado=5');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Cambio de contraseña
+            
+            // Asignar los atributos
+            $args = $_POST['usuario'];
+            
+            $usuario->comprobarPasswordNueva();
+            
+            $usuario->sincronizar($args);
+
+            // Validacion
+            $errores = $usuario->validar();
+
+
+            if (empty($errores)) {
+
+                if ($_FILES['usuario']['tmp_name']['imagen_usuario']) {
+                    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+                    $image = Image::make($_FILES['usuario']['tmp_name']['imagen_usuario'])->fit(500, 500);
+                    $usuario->setImagen($nombreImagen, CARPETA_IMAGENES_USUARIOS);
+                    $image->save(CARPETA_IMAGENES_USUARIOS . $nombreImagen);
+                }
+
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    header('Location: /users?resultado=2');
+                }
+
+            }
+        }
+
+        $router->render('usuarios/actualizar', [
+            "errores" => $errores,
+            "usuario" => $usuario
         ]);
     }
 }

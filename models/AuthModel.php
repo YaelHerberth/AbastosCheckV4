@@ -110,8 +110,6 @@ class AuthModel extends ActiveRecord
 
     public function autenticar()
     {
-
-        session_start();
         // Llenar el arreglo de sesion   
         $_SESSION['id'] = $this->id;   
         $_SESSION['username'] = $this->username_usuario;

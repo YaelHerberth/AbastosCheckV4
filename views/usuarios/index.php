@@ -7,21 +7,26 @@
         </div>
     </div>
     <?php $r = $_GET['resultado'] ?? null ?>
-    <?php if ($r) : ?>
+
+    <?php if ($r == 1) : ?>
         <div class="alert alert-success text-uppercase text-center" role="alert">
             Usuario Registrado Correctamente
         </div>
-    <?php elseif ($r) : ?>
+    <?php elseif ($r == 2) : ?>
         <div class="alert alert-success text-uppercase text-center" role="alert">
             Usuario Actualizado Correctamente
         </div>
-    <?php elseif ($r) : ?>
+    <?php elseif ($r == 3) : ?>
         <div class="alert alert-success text-uppercase text-center" role="alert">
             Usuario Dado de Baja Correctamente
         </div>
-    <?php elseif ($r) : ?>
+    <?php elseif ($r == 4) : ?>
         <div class="alert alert-success text-uppercase text-center" role="alert">
             Usuario Eliminado Correctamente
+        </div>
+    <?php elseif ($r == 5) : ?>
+        <div class="alert alert-danger text-uppercase text-center" role="alert">
+            Usuario No Existe
         </div>
     <?php endif ?>
     <div class="row">
@@ -63,7 +68,7 @@
                             echo 'Baja';
                         } ?></td>
                     <td>
-                        <button class="btn btn-info"><i class="bi bi-pen"></i></button>
+                        <a href="/users/actualizar?id=<?= $usuarios->id ?>" class="btn btn-info"><i class="bi bi-pen"></i></a>
                         <button class="btn btn-warning"><i class="bi bi-trash"></i></button>
                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                     </td>

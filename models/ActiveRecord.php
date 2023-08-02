@@ -23,7 +23,7 @@ class ActiveRecord
     {
         if (!is_null($this->id)) {
             // Actualizar
-            $this->actualizar();
+            return $this->actualizar();
         } else {
             // Creando un nuevo registro
             return $this->crear();
@@ -75,10 +75,7 @@ class ActiveRecord
 
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            //Redireccionar al usuario
-            header('Location: /admin?resultado=2');
-        }
+        return $resultado;
     }
 
     // Eliminar un registro
@@ -116,6 +113,7 @@ class ActiveRecord
 
         foreach ($atributos as $key => $value) {
             $sanitizando[$key] = self::$db->escape_string($value);
+            var_dump($sanitizando[$key]);
         }
         return $sanitizando;
     }
@@ -125,7 +123,7 @@ class ActiveRecord
     {
         // Elimina la imagen previa
         if (!is_null($this->id)) {
-            $this->eliminarImagen();
+            $this->eliminarImagenUsuario();
         }
 
         // Asignar al atributo de imagen el nombre de la imagen

@@ -66,14 +66,15 @@ function mostrarNotificacion($codigo)
     return $mensaje;
 }
 
+
 function validarORedireccionar(string $url)
 {
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
-    // var_dump($id);
 
-    if (!$id) {
-        header("Location: {$url}");
+    if (!$id && $id != 0) {
+        // header("Location: {$url}");
+        echo 'no es entero';
     }
 
     return $id;
