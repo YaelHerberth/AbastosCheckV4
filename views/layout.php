@@ -67,10 +67,10 @@ $resultado =  $departamento->all();
             </ul>
 
             <div class="col-md-3 text-end">
-                <a href="" class="btn btn-outline-success position-relative me-3">
+                <a href="/carrito" class="btn btn-outline-success position-relative me-3">
                     <i class="bi bi-cart-fill">
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            99+
+                            <?= (empty($_SESSION['CARRITO']))?0:count(($_SESSION['CARRITO'])); ?>
                             <span class="visually-hidden">Productos en el carrito</span>
                         </span>
                     </i>

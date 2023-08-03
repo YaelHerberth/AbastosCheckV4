@@ -20,6 +20,9 @@ session_start();
 $router->get('/',[PaginasController::class, 'index']);
 $router->get('/departamentoss',[PaginasController::class, 'departamentos']);
 $router->get('/productoss',[PaginasController::class, 'productos']);
+$router->post('/productoss',[PaginasController::class, 'productos']);
+$router->get('/carrito',[PaginasController::class, 'carrito']);
+$router->post('/carrito',[PaginasController::class, 'carrito']);
 
 // Zona privada
 $router->get('/profile',[ProfileController::class, 'profile']);
@@ -46,7 +49,6 @@ $router->post('/productos/crear',[ProductosController::class, 'crear']);
 $router->get('/productos/actualizar',[ProductosController::class, 'actualizar']);
 $router->post('/productos/actualizar',[ProductosController::class, 'actualizar']);
 $router->post('/productos/eliminar',[ProductosController::class, 'eliminar']);
-
 
 
 // Autenticación

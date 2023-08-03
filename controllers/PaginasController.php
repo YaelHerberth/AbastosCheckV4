@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use Model\CarritoModel;
 use Model\DepartamentosModel;
 use Model\ProductoModel;
 use Model\PaginasModel;
@@ -28,6 +29,8 @@ class PaginasController{
 
     public static function productos(Router $router){
 
+        $carrito = new CarritoModel();
+
         $producto = new ProductoModel();
         $id_departamento = $_GET['id'];
 
@@ -38,9 +41,29 @@ class PaginasController{
         $resultado = $producto->findProducto($id_departamento);
         $departamento = $producto->findDepartamento($id_departamento);
 
+        $producto = $_POST['producto'] ?? null;
+        $carrito->carrito($producto);
+
+        if($_SERVER['REQUEST_METHOD']){
+            
+
+        }
+
         $router->render('paginas/productos', [
             'resultado' => $resultado,
             'departamento' => $departamento
+        ]);
+    }
+
+    public static function carrito(Router $router){
+        $carrito = new CarritoModel();
+        $id = $_POST['id'] ?? null;
+        if($id){
+            $carrito->eliminarProductoCarrito($id);
+        }
+
+        $router->render('paginas/carrito', [
+            
         ]);
     }
 }
