@@ -83,8 +83,6 @@ class DepartamentosController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Cambio de contraseña
-
             // Asignar los atributos
             $args = $_POST['departamento'];
 
@@ -121,7 +119,8 @@ class DepartamentosController
         ]);
     }
 
-    public static function eliminar(){
+    public static function eliminar()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -132,5 +131,4 @@ class DepartamentosController
             }
         }
     }
-
 }

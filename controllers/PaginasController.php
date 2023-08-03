@@ -2,8 +2,8 @@
 namespace Controllers;
 
 use Model\DepartamentosModel;
-use Model\PaginasModel;
 use Model\ProductoModel;
+use Model\PaginasModel;
 use MVC\Router;
 
 class PaginasController{
@@ -30,7 +30,10 @@ class PaginasController{
 
         $producto = new ProductoModel();
         $id_departamento = $_GET['id'];
-        $producto->sanitizarEntrada($id_departamento);
+
+        if(!filter_var($id_departamento, FILTER_VALIDATE_INT)){
+            header('Location: /departamentoss');
+        }
 
         $resultado = $producto->findProducto($id_departamento);
         $departamento = $producto->findDepartamento($id_departamento);

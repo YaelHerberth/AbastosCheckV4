@@ -50,7 +50,7 @@ $resultado =  $departamento->all();
                     </a>
                     <ul class="dropdown-menu">
                         <?php foreach ($resultado as $departamento) : ?>
-                            <li><a class="dropdown-item" href="/productos?id=<?= $departamento->id ?>"><?= $departamento->nombre_departamento ?></a></li>
+                            <li><a class="dropdown-item" href="/productoss?id=<?= $departamento->id ?>"><?= $departamento->nombre_departamento ?></a></li>
                         <?php endforeach ?>
                     </ul>
                 </li>

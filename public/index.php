@@ -18,8 +18,8 @@ session_start();
 
 // Zona publica
 $router->get('/',[PaginasController::class, 'index']);
-$router->get('/departamentos',[PaginasController::class, 'departamentos']);
-$router->get('/productos',[PaginasController::class, 'productos']);
+$router->get('/departamentoss',[PaginasController::class, 'departamentos']);
+$router->get('/productoss',[PaginasController::class, 'productos']);
 
 // Zona privada
 $router->get('/profile',[ProfileController::class, 'profile']);
@@ -42,6 +42,10 @@ $router->post('/departamentos/eliminar',[DepartamentosController::class, 'elimin
 // Productos
 $router->get('/productos',[ProductosController::class, 'index']);
 $router->get('/productos/crear',[ProductosController::class, 'crear']);
+$router->post('/productos/crear',[ProductosController::class, 'crear']);
+$router->get('/productos/actualizar',[ProductosController::class, 'actualizar']);
+$router->post('/productos/actualizar',[ProductosController::class, 'actualizar']);
+$router->post('/productos/eliminar',[ProductosController::class, 'eliminar']);
 
 
 

@@ -123,7 +123,7 @@ class ActiveRecord
     {
         // Elimina la imagen previa
         if (!is_null($this->id)) {
-            $this->eliminarImagenUsuario();
+            $this->eliminarImagen();
         }
 
         // Asignar al atributo de imagen el nombre de la imagen
