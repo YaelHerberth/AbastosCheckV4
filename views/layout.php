@@ -59,9 +59,9 @@ $resultado =  $departamento->all();
                         Sobre nosotros
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Conocenos</a></li>
-                        <li><a class="dropdown-item" href="#">Mision</a></li>
-                        <li><a class="dropdown-item" href="#">Valores</a></li>
+                        <li><a class="dropdown-item" href="/conocenos">Conocenos</a></li>
+                        <li><a class="dropdown-item" href="/avisos-privacidad">Avisos de Privacidad</a></li>
+                        <li><a class="dropdown-item" href="/terminos-condiciones">Terminos y Condiciones</a></li>
                     </ul>
                 </li>
             </ul>
@@ -119,13 +119,7 @@ $resultado =  $departamento->all();
                 <img src="build/img/LogoH2.svg" alt="" class="img-fluid me-4" style="width: 3rem; ">
             </a>
 
-            <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link link-success px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-success px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-success px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-success px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-success px-2 text-body-secondary">About</a></li>
-            </ul>
+            <p class="col-md-4 mb-0 text-body-secondary text-end">Desarrollado por: Yael Sánchez Herbert</p>
         </footer>
     </div>
 </body>

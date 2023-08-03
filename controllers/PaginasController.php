@@ -27,6 +27,26 @@ class PaginasController{
         ]);
     }
 
+    public static function conocenos(Router $router){
+
+        $router->render('paginas/conocenos', [
+            
+        ]);
+    }
+    public static function avisos(Router $router){
+
+        $router->render('paginas/avisos-privacidad', [
+            
+        ]);
+    }
+
+    public static function terminos(Router $router){
+
+        $router->render('paginas/terminos-condiciones', [
+            
+        ]);
+    }
+
     public static function productos(Router $router){
 
         $carrito = new CarritoModel();

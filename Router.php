@@ -23,7 +23,20 @@ class Router
         $auth = $_SESSION['login'] ?? false;
 
         // Arreglo de rutas protegidas
-        $rutas_protegidas = ['/users', '/users/crear', '/users/actualizar', '/users/eliminar' , '/departamentos/crear', '/departamentos/actualizar', '/departamentos/eliminar', '/productos/crear', '/productos/actualizar', '/productos/eliminar'];
+        $rutas_protegidas = [
+        '/profile', 
+        '/users', 
+        '/users/crear', 
+        '/users/actualizar', 
+        '/users/eliminar' , 
+        '/departamentos', 
+        '/departamentos/crear', 
+        '/departamentos/actualizar', 
+        '/departamentos/eliminar', 
+        '/productos',
+        '/productos/crear',
+        '/productos/actualizar', 
+        '/productos/eliminar'];
 
         //$urlActual = $_SERVER['PATH_INFO'] ?? '/';
         $urlActual = $_SERVER['REQUEST_URI'] ?? '/';
@@ -31,11 +44,11 @@ class Router
 
         // Proteger las rutas
         if(in_array($urlActual, $rutas_protegidas) && !$auth){
-            header('Location: /');
+            header('Location: /login?resultado=2');
         }
 
         if($urlActual == '/login' && $auth){
-            header('Location: /admin');
+            header('Location: /profile');
         }
 
         if (strpos($urlActual, '?')) { // tuve que crear este if para que cuando sea un get, tome el redirect y no el request
