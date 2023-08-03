@@ -111,7 +111,6 @@ class ActiveRecord
         $atributos = $this->atributos();
         $sanitizando = [];
 
-
         foreach ($atributos as $key => $value) {
             $sanitizando[$key] = self::$db->escape_string($value);
         }

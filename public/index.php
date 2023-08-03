@@ -23,6 +23,8 @@ $router->get('/productoss',[PaginasController::class, 'productos']);
 $router->post('/productoss',[PaginasController::class, 'productos']);
 $router->get('/carrito',[PaginasController::class, 'carrito']);
 $router->post('/carrito',[PaginasController::class, 'carrito']);
+$router->get('/comprar',[PaginasController::class, 'comprar']);
+$router->post('/comprar',[PaginasController::class, 'comprar']);
 
 // Zona privada
 $router->get('/profile',[ProfileController::class, 'profile']);

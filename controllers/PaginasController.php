@@ -66,4 +66,17 @@ class PaginasController{
             
         ]);
     }
+
+    public static function comprar(Router $router){
+        $carrito = new CarritoModel();
+        $comprar = $_POST['comprar'] ?? null;
+        if($comprar){
+            $_SESSION['CARRITO'] = '';
+            
+        }
+
+        $router->render('paginas/comprar', [
+                
+        ]);
+    }
 }

@@ -1,3 +1,4 @@
+
 <div class="container">
     <hr>
     <h1>Carrito</h1>
@@ -70,7 +71,9 @@
                 </tr>
             </table>
             <div class="text-end">
-                <a href="" class="btn btn-success"><i class="bi bi-cart"></i> Comprar</a>
+                <form action="/comprar" method="POST">
+                    <button type="submit" name="comprar" value="comprar" class="btn btn-success"><i class="bi bi-cart"></i> Comprar</button>
+                </form>
             </div>
         <?php else : ?>
             <div class="alert alert-success text-uppercase text-center" role="alert">

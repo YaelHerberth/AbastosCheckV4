@@ -12,7 +12,7 @@ $resultado =  $departamento->all();
 
 // var_dump($_SESSION);
 // var_dump($_SERVER['DOCUMENT_ROOT'])
-
+// var_dump($_SESSION['CARRITO']);
 ?>
 
 <!DOCTYPE html>
