@@ -3,7 +3,6 @@ namespace MVC;
 
 class Router
 {
-    /* Prueba de git */
     public $rutasGET = [];
     public $rutasPOST = [];
 

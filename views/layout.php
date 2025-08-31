@@ -119,7 +119,7 @@ $resultado =  $departamento->all();
                 <img src="build/img/LogoH2.svg" alt="" class="img-fluid me-4" style="width: 3rem; ">
             </a>
 
-            <p class="col-md-4 mb-0 text-body-secondary text-end">Desarrollado por: Yael Sánchez Herbert</p>
+            <p class="col-md-4 mb-0 text-body-secondary text-end">Desarrollado por: Yael Sánchez Herberth</p>
         </footer>
     </div>
 </body>
